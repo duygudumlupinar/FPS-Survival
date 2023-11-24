@@ -18,7 +18,7 @@ public class WeaponHandler : MonoBehaviour
     private Animator _animator;
     public WeaponAim weaponAim;
 
-    [SerializeField] private GameObject muzzleFLash;
+    [SerializeField] private GameObject muzzleFlash;
     [SerializeField] private AudioSource shootSound;
     [SerializeField] private AudioSource reloadSound;
     public WeaponBulletType bulletType;
@@ -42,11 +42,11 @@ public class WeaponHandler : MonoBehaviour
 
     void MuzzleFlashOn()
     {
-        muzzleFLash.SetActive(true);
+        muzzleFlash.SetActive(true);
     }
     void MuzzleFlashOff()
     {
-        muzzleFLash.SetActive(false);
+        muzzleFlash.SetActive(false);
     }
 
     void Reload()
