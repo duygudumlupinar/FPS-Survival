@@ -18,14 +18,14 @@ public class EnemyController : MonoBehaviour
     private EnemyState enemyState;
 
     public float walkSpeed = 0.5f;
-    public float runSpeed = 4f;
-    public float chaseDistance = 7f;
+    public float runSpeed = 6f;
+    public float chaseDistance = 3f;
     public float currentChaseDistance;
-    public float attackDistance = 1.8f;
-    public float chaseAfterHitDistance = 2f;
+    public float attackDistance = 0.5f;
+    public float chaseAfterHitDistance = 1f;
 
     public float patrolRadius = 50f;
-    public float attackWait = 3f;
+    public float attackWait = 2f;
     public float attackTimer;
     public float patrolTime = 15f;
     public float patrolTimer;
@@ -93,7 +93,11 @@ public class EnemyController : MonoBehaviour
         navMeshAgent.isStopped = false;
         navMeshAgent.speed = runSpeed;
 
-        navMeshAgent.SetDestination(target.position);
+        NavMeshPath path = new NavMeshPath();
+        navMeshAgent.CalculatePath(target.transform.position, path);
+        navMeshAgent.SetPath(path);
+
+        //navMeshAgent.SetDestination(target.transform.position);
 
         if (navMeshAgent.velocity.sqrMagnitude > 0)
         {
@@ -148,5 +152,10 @@ public class EnemyController : MonoBehaviour
         NavMeshHit navMeshHit;
         NavMesh.SamplePosition(randomDirection, out navMeshHit, patrolRadius, -1);
         navMeshAgent.SetDestination(navMeshHit.position);
+    }
+
+    public EnemyState Enemy_State
+    {
+        get; set;
     }
 }
